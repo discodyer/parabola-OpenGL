@@ -2,13 +2,22 @@ cmake_minimum_required( VERSION 3.1 )
 
 project( Parabola-OpenGL )
 
-if(MSVC)
-    list(APPEND CMAKE_PREFIX_PATH "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
-else()
-    list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/lib/cmake/glfw3")
-endif()
+# if(MSVC)
+#     list(APPEND CMAKE_PREFIX_PATH "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
+# else()
+#     list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/lib/cmake/glfw3")
+# endif()
 
-# list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/lib/cmake/glfw3")
+if (CMAKE_COMPILER_IS_GNUCC)
+    execute_process(COMMAND ${CMAKE_C_COMPILER} -dumpmachine OUTPUT_VARIABLE GCC_TARGET)
+    if(GCC_TARGET MATCHES "i686-w64-mingw32" )
+        list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/lib/i686/lib/cmake/glfw3")
+    elseif(GCC_TARGET MATCHES "x86_64-w64-mingw32" )
+        list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/lib/cmake/glfw3")
+    endif()
+    # list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/lib/cmake/glfw3")
+    # endif()
+endif()
 
 find_package(glfw3 3.3 REQUIRED)
 
