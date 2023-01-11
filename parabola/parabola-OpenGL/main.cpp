@@ -38,6 +38,10 @@ int main()
         // 输入
         processInput(window);
 
+        // 渲染指令
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
         // 检查并调用事件，交换缓冲
         glfwSwapBuffers(window);
         glfwPollEvents();
