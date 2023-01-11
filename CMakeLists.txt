@@ -26,11 +26,15 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/")
 set( Parabola-OpenGL-SRC
     src/main.cpp
     src/glad.c
+    src/shader.cpp
     )
 
 add_executable( Parabola-OpenGL WIN32 ${Parabola-OpenGL-SRC} )
 
 target_link_libraries(Parabola-OpenGL ${OPENGL_LIBRARIES} glfw)
+
+set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb -static")
+set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall -static")
 
 if( MSVC )
     if(${CMAKE_VERSION} VERSION_LESS "3.6.0") 
