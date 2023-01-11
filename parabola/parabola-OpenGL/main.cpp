@@ -3,6 +3,7 @@
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void processInput(GLFWwindow* window);
 
 int main()
 {
@@ -31,8 +32,13 @@ int main()
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+    // 渲染循环
     while (!glfwWindowShouldClose(window))
     {
+        // 输入
+        processInput(window);
+
+        // 检查并调用事件，交换缓冲
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -44,4 +50,10 @@ int main()
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
+}
+
+void processInput(GLFWwindow* window)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
 }
