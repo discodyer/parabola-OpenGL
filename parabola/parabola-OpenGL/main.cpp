@@ -13,7 +13,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(800, 600, "Âπ≥ÊäõËøêÂä®", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -32,17 +32,17 @@ int main()
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-    // ‰÷»æ—≠ª∑
+    // Ê∏≤ÊüìÂæ™ÁéØ
     while (!glfwWindowShouldClose(window))
     {
-        //  ‰»Î
+        // ËæìÂÖ•
         processInput(window);
 
-        // ‰÷»æ÷∏¡Ó
+        // Ê∏≤ÊüìÊåá‰ª§
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // ºÏ≤È≤¢µ˜”√ ¬º˛£¨Ωªªªª∫≥Â
+        // Ê£ÄÊü•Âπ∂Ë∞ÉÁî®‰∫ã‰ª∂Ôºå‰∫§Êç¢ÁºìÂÜ≤
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
