@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-11 18:56:37
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 00:37:10
+ * @LastEditTime: 2023-01-13 01:13:10
  * @FilePath: \parabola-OpenGL\src\main.cpp
  * @Description: 主函数~(￣▽￣)~*
  */
@@ -12,6 +12,8 @@
 #include <iostream>
 #include "shader.hpp"
 #include <cmath>
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void processInput(GLFWwindow *window);
