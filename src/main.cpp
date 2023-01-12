@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-11 18:56:37
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 02:02:05
+ * @LastEditTime: 2023-01-13 02:40:50
  * @FilePath: \parabola-OpenGL\src\main.cpp
  * @Description: 主函数~(￣▽￣)~*
  */
@@ -89,7 +89,8 @@ int main()
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
-    Texture containerTexture("../res/pics/container.jpg");
+    Texture containerTexture("../res/pics/container.jpg", GL_RGB);
+    Texture faceTexture("../res/pics/awesomeface.png", GL_RGBA);
 
     // note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -101,6 +102,9 @@ int main()
     // uncomment this call to draw in wireframe polygons.
     // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
+    triangleShader.use();
+    triangleShader.setUniform("texture1", 0);
+    triangleShader.setUniform("texture2", 1);
     // 渲染循环
     while (!glfwWindowShouldClose(window))
     {
@@ -112,10 +116,11 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
 
         // bind Texture
-        containerTexture.bind();
+        containerTexture.bind(0);
+        faceTexture.bind(1);
 
         // 绘制
-        triangleShader.use();        
+        triangleShader.use();
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         // glBindVertexArray(0); // no need to unbind it every time
