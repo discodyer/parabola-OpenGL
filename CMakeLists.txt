@@ -29,6 +29,7 @@ set( Parabola-OpenGL-SRC
     src/main.cpp
     src/glad.c
     src/shader.cpp
+    src/texture.cpp
     )
 
 add_executable( Parabola-OpenGL WIN32 ${Parabola-OpenGL-SRC} )
