@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-12 01:19:48
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 00:11:19
+ * @LastEditTime: 2023-01-13 00:37:38
  * @FilePath: \parabola-OpenGL\src\shader.cpp
  * @Description: shader class
  */
@@ -91,6 +91,11 @@ void Shader::setUniform(const std::string &name, int value) const
 void Shader::setUniform(const std::string &name, float value) const
 {
     glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
+}
+
+void Shader::setUniform(const std::string &name, float vec0, float vec1, float vec2, float vec3) const
+{
+    glUniform4f(glGetUniformLocation(ID, name.c_str()), vec0, vec1, vec2, vec3);
 }
 
 void Shader::checkCompileErrors(unsigned int shader, std::string type)

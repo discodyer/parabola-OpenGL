@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-12 01:24:47
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 00:11:06
+ * @LastEditTime: 2023-01-13 00:37:00
  * @FilePath: \parabola-OpenGL\src\shader.hpp
  * @Description: shader header file
  */
@@ -29,6 +29,7 @@ public:
     void setUniform(const std::string &name, bool value) const;
     void setUniform(const std::string &name, int value) const;
     void setUniform(const std::string &name, float value) const;
+    void setUniform(const std::string &name, float vec0, float vec1, float vec2, float vec3) const;
 private:
     // 打印编译错误（如果有的话）
     void checkCompileErrors(unsigned int shader, std::string type);
