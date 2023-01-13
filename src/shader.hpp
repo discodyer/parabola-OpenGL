@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-12 01:24:47
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 16:16:15
+ * @LastEditTime: 2023-01-13 16:29:09
  * @FilePath: \parabola-OpenGL\src\shader.hpp
  * @Description: 着色器类
  */
@@ -42,13 +42,40 @@ public:
     /*!
      * @brief uniform工具函数
      * Set the Uniform object
-     * 
+     * Using glUniform1i
      * @param name Uniform name
-     * @param value set the value
+     * @param value Bool
      */
     void setUniform(const std::string &name, bool value) const;
+
+    /*!
+     * @brief uniform工具函数
+     * Set the Uniform object
+     * Using glUniform1i
+     * @param name Uniform name
+     * @param value int
+     */
     void setUniform(const std::string &name, int value) const;
+
+    /*!
+     * @brief uniform工具函数
+     * Set the Uniform object
+     * Using glUniform1f
+     * @param name Uniform name
+     * @param value float
+     */
     void setUniform(const std::string &name, float value) const;
+
+    /*!
+     * @brief uniform工具函数
+     * Set the Uniform object
+     * Using glUniform4f
+     * @param name Uniform name
+     * @param vec0 float
+     * @param vec1 float
+     * @param vec2 float
+     * @param vec3 float
+     */
     void setUniform(const std::string &name, float vec0, float vec1, float vec2, float vec3) const;
 private:
 
