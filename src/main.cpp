@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-11 18:56:37
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 15:19:34
+ * @LastEditTime: 2023-01-13 15:32:32
  * @FilePath: \parabola-OpenGL\src\main.cpp
  * @Description: 主函数~(￣▽￣)~*
  */
@@ -93,7 +93,7 @@ int main()
     glEnableVertexAttribArray(2);
 
     Texture containerTexture("../res/pics/container.jpg");
-    Texture faceTexture("../res/pics/awesomeface.png");
+    Texture faceTexture("../res/pics/awesomeface.png", GL_RGBA);
 
     // note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
     glBindBuffer(GL_ARRAY_BUFFER, 0);

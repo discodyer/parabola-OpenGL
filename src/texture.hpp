@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-12 01:24:47
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 15:22:43
+ * @LastEditTime: 2023-01-13 15:40:14
  * @FilePath: \parabola-OpenGL\src\texture.hpp
  * @Description: 材质类
  */
@@ -19,8 +19,7 @@ public:
     unsigned int ID;
     // 图片宽度，高度和颜色通道数量
     int width, height, nrChannels;
-    Texture(const char* texturePath);
-    Texture(const char* texturePath, int RGB_MODE);
+    Texture(const char* texturePath, int RGB_MODE = GL_RGB);
     void bind();
     void bind(int unit);
 };
