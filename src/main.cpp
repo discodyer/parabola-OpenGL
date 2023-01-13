@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-11 18:56:37
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 15:32:32
+ * @LastEditTime: 2023-01-13 16:16:34
  * @FilePath: \parabola-OpenGL\src\main.cpp
  * @Description: 主函数~(￣▽￣)~*
  */
@@ -143,7 +143,7 @@ int main()
     return 0;
 }
 
-/**
+/*!
  * @description: 自动修改窗口大小
  * @param {GLFWwindow*} window
  * @param {int} width
@@ -155,7 +155,7 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height)
     glViewport(0, 0, width, height);
 }
 
-/**
+/*!
  * @description: 检测escape键是否按下
  * @param {GLFWwindow*} window
  * @return {*}

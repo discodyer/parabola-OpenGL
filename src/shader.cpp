@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-12 01:19:48
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 15:45:44
+ * @LastEditTime: 2023-01-13 15:57:23
  * @FilePath: \parabola-OpenGL\src\shader.cpp
  * @Description: Shader 着色器类实现
  */
@@ -10,7 +10,7 @@
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath)
 {
-    // 1. retrieve the vertex/fragment source code from filePath 
+    // 1. retrieve the vertex/fragment source code from filePath
     // 1. 从文件路径中获取顶点/片段着色器
     std::string vertexCode;
     std::string fragmentCode;
