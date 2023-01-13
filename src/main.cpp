@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-11 18:56:37
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 16:16:34
+ * @LastEditTime: 2023-01-14 01:34:45
  * @FilePath: \parabola-OpenGL\src\main.cpp
  * @Description: 主函数~(￣▽￣)~*
  */
@@ -10,12 +10,15 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "shader.hpp"
 #include <cmath>
+
+#include "shader.hpp"
 #include "texture.hpp"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -23,7 +26,7 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void processInput(GLFWwindow *window);
 
 // settings
-const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_WIDTH = 600;
 const unsigned int SCR_HEIGHT = 600;
 
 int main()
@@ -58,11 +61,11 @@ int main()
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {
-    //     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
-        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
-        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上
+        // positions          // texture coords
+         0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // top right
+         0.5f, -0.5f, 0.0f,   1.0f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // bottom left
+        -0.5f,  0.5f, 0.0f,   0.0f, 1.0f  // top left 
     };
 
     unsigned int indices[] = {  
@@ -83,14 +86,14 @@ int main()
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
     // color attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
+    // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    // glEnableVertexAttribArray(1);
     // texture coord attribute
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
 
     Texture containerTexture("../res/pics/container.jpg");
     Texture faceTexture("../res/pics/awesomeface.png", GL_RGBA);
@@ -108,22 +111,32 @@ int main()
     triangleShader.use();
     triangleShader.setUniform("texture1", 0);
     triangleShader.setUniform("texture2", 1);
+    
     // 渲染循环
     while (!glfwWindowShouldClose(window))
     {
-        // 输入
+        // 输入检查
         processInput(window);
 
         // 渲染指令
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // bind Texture
+        // 绑定贴图
         containerTexture.bind(0);
         faceTexture.bind(1);
 
-        // 绘制
+        // 创建变换矩阵
+        glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+        transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+        transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+
+        // 应用变换
         triangleShader.use();
+        triangleShader.setUniformMatrix("transform", transform, 1, GL_FALSE);
+
+
+        // 绘制图形
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         // glBindVertexArray(0); // no need to unbind it every time
@@ -133,8 +146,7 @@ int main()
         glfwPollEvents();
     }
 
-    // optional: de-allocate all resources once they've outlived their purpose:
-    // ------------------------------------------------------------------------
+    // 一旦资源没用了，就取消分配所有资源
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
     glDeleteBuffers(1, &EBO);

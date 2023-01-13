@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-12 01:24:47
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 16:29:09
+ * @LastEditTime: 2023-01-14 01:24:41
  * @FilePath: \parabola-OpenGL\src\shader.hpp
  * @Description: 着色器类
  */
@@ -14,6 +14,10 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 /*!
  * @brief 着色器类
@@ -77,6 +81,8 @@ public:
      * @param vec3 float
      */
     void setUniform(const std::string &name, float vec0, float vec1, float vec2, float vec3) const;
+
+    void setUniformMatrix(const std::string &name, glm::mat4 &transform, int matNum = 1 , int ifTranspose = GL_FALSE) const;
 private:
 
     /*!

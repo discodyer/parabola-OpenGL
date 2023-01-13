@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-12 01:19:48
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 15:57:23
+ * @LastEditTime: 2023-01-14 01:25:25
  * @FilePath: \parabola-OpenGL\src\shader.cpp
  * @Description: Shader 着色器类实现
  */
@@ -96,6 +96,11 @@ void Shader::setUniform(const std::string &name, float value) const
 void Shader::setUniform(const std::string &name, float vec0, float vec1, float vec2, float vec3) const
 {
     glUniform4f(glGetUniformLocation(ID, name.c_str()), vec0, vec1, vec2, vec3);
+}
+
+void Shader::setUniformMatrix(const std::string &name, glm::mat4 &transform, int matNum, int ifTranspose) const
+{
+    glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), matNum, ifTranspose, glm::value_ptr(transform));
 }
 
 void Shader::checkCompileErrors(unsigned int shader, std::string type)
