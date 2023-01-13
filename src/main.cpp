@@ -2,7 +2,7 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-11 18:56:37
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 02:40:50
+ * @LastEditTime: 2023-01-13 15:19:34
  * @FilePath: \parabola-OpenGL\src\main.cpp
  * @Description: 主函数~(￣▽￣)~*
  */
@@ -13,6 +13,9 @@
 #include "shader.hpp"
 #include <cmath>
 #include "texture.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -89,8 +92,8 @@ int main()
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
-    Texture containerTexture("../res/pics/container.jpg", GL_RGB);
-    Texture faceTexture("../res/pics/awesomeface.png", GL_RGBA);
+    Texture containerTexture("../res/pics/container.jpg");
+    Texture faceTexture("../res/pics/awesomeface.png");
 
     // note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
     glBindBuffer(GL_ARRAY_BUFFER, 0);

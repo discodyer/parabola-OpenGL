@@ -23,6 +23,7 @@ find_package(glfw3 3.3 REQUIRED)
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/")
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/lib/stb/")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/lib/glm/")
 
 
 set( Parabola-OpenGL-SRC
