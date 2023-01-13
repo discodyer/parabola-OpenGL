@@ -2,9 +2,9 @@
  * @Author: discodyer cody23333@gmail.com
  * @Date: 2023-01-12 01:19:48
  * @LastEditors: discodyer cody23333@gmail.com
- * @LastEditTime: 2023-01-13 00:37:38
+ * @LastEditTime: 2023-01-13 15:45:44
  * @FilePath: \parabola-OpenGL\src\shader.cpp
- * @Description: shader class
+ * @Description: Shader 着色器类实现
  */
 #include "shader.hpp"
 

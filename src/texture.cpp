@@ -1,3 +1,11 @@
+/*
+ * @Author: discodyer cody23333@gmail.com
+ * @Date: 2023-01-13 01:18:28
+ * @LastEditors: discodyer cody23333@gmail.com
+ * @LastEditTime: 2023-01-13 15:45:22
+ * @FilePath: \parabola-OpenGL\src\texture.cpp
+ * @Description: Texture 贴图类实现
+ */
 #include "texture.hpp"
 
 Texture::Texture(const char* texturePath, int RGB_MODE)
